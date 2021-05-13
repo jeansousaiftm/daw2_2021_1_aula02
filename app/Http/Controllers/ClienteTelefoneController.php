@@ -18,7 +18,7 @@ class ClienteTelefoneController extends Controller
         $cliente_telefone = new ClienteTelefone();
 		$cliente_telefone->cliente = $request->get("cliente");
 		
-		$cliente_telefones = ClienteTelefone::Where("cliente", $request->get("cliente"))->get();
+		$cliente_telefones = ClienteTelefone::Where("cliente", $request->get("cliente"))->orderByDesc("preferencial")->get();
 		
 		return view("cliente_telefone.index", [
 			"cliente_telefone" => $cliente_telefone,
@@ -52,7 +52,19 @@ class ClienteTelefoneController extends Controller
 		}
 		
 		$cliente_telefone->cliente = $request->get("cliente");
-		$cliente_telefone->telefone = $request->get("telefone");
+		
+		$telefone = $request->get("telefone");
+		$telefone = str_replace("(", "", $telefone);
+		$telefone = str_replace(")", "", $telefone);
+		$telefone = str_replace("-", "", $telefone);
+		$telefone = str_replace(" ", "", $telefone);
+		$cliente_telefone->telefone = $telefone;
+		
+		if ($request->get("preferencial") == 1) {
+			$cliente_telefone->preferencial = 1;
+		} else {
+			$cliente_telefone->preferencial = 0;
+		}
 		
 		$cliente_telefone->save();
 		

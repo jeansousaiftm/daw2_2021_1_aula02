@@ -3,8 +3,11 @@
 	<head>
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}" />
 		<link rel="stylesheet" href="{{ asset('css/estilo.css') }}" />
+		<link rel="stylesheet" href="{{ asset('css/fa.css') }}" />
+		
 		<script src="{{ asset('js/jquery.js') }}"></script>
 		<script src="{{ asset('js/bootstrap.js') }}"></script>
+		<script src="{{ asset('js/mask.js') }}"></script>
 		<script src="{{ asset('js/script.js') }}"></script>
 	</head>
 	<body>
